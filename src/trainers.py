@@ -277,8 +277,6 @@ class Trainer(object):
             logs['l_video_dis'] += l_video_dis.data.item()
 
             batch_num += 1
-            
-            writer = tf.summary.create_file_writer(log_dir)
 
             if batch_num % self.log_interval == 0:
 
@@ -299,9 +297,7 @@ class Trainer(object):
                 generator.eval()
 
                 images, _ = sample_fake_image_batch(self.image_batch_size)
-                with writer.as_default():
-                    tf.summary.image("Images", images_to_numpy(images), batch_num)
-                    writer.flush()
+                logger.image_summary("Images", images_to_numpy(images), batch_num)
 
                 videos, _ = sample_fake_video_batch(self.video_batch_size)
 
