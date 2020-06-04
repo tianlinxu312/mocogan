@@ -21,7 +21,7 @@ class VideoFolderDataset(torch.utils.data.Dataset):
 
         if cache is not None and os.path.exists(cache):
             with open(cache, 'rb') as f:
-                self.images, self.lengths = pickle.load(f)
+                self.images, self.lengths = pickle.load(f, encoding='latin1')
         else:
             for idx, (im, categ) in enumerate(
                     tqdm.tqdm(dataset, desc="Counting total number of frames")):
