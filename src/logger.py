@@ -34,7 +34,7 @@ class Logger(object):
                 s = BytesIO()
             Image.fromarray(img).save(s, format="png")
             
-            img_sum = tf.summary.image(encoded_image_string=s.getvalue())
+            img_sum = s.getvalue())
             
             img_summaries.append(img_sum)
 
