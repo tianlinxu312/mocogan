@@ -19,7 +19,7 @@ class VideoFolderDataset(torch.utils.data.Dataset):
         self.lengths = []
         self.images = []
 
-        if cache is not None and os.path.exists(cache):
+        if (cache is not None) and (os.path.getsize(cache) != 0):
             with open(cache, 'rb') as f:
                 self.images, self.lengths = pickle.load(f)
         else:
