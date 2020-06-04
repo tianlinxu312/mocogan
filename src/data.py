@@ -34,7 +34,7 @@ class VideoFolderDataset(torch.utils.data.Dataset):
 
             if cache is not None:
                 with open(cache, 'wb') as f:
-                    pickle.dump((self.images, self.lengths), f, protocol=2)
+                    pickle.dump((self.images, self.lengths), f, protocol=4)
 
         self.cumsum = np.cumsum([0] + self.lengths)
         print("Total number of frames {}".format(np.sum(self.lengths)))
