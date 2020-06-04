@@ -146,7 +146,7 @@ class Trainer(object):
         batch_idx, batch = next(self.video_enumerator)
         b = batch
         if self.use_cuda:
-            for k, v in batch.iteritems():
+            for k, v in batch.items():
                 b[k] = v.cuda()
 
         if batch_idx == len(self.video_sampler) - 1:
