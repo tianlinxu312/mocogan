@@ -33,6 +33,11 @@ class Logger(object):
             except:
                 s = BytesIO()
             Image.fromarray(img).save(s, format="png")
+            
+            img_sum = tf.summary.image(encoded_image_string=s.getvalue(),
+                                       height=img.shape[0],
+                                       width=img.shape[1])
+            
             img_summaries.append(Image.fromarray(img))
 
         # Create and write Summary
