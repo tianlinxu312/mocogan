@@ -24,23 +24,9 @@ class Logger(object):
             self.writer.flush()
 
     def image_summary(self, tag, images, step):
-
-        img_summaries = []
-        for i, img in enumerate(images):
-            # Write the image to a string
-            try:
-                s = StringIO()
-            except:
-                s = BytesIO()
-            Image.fromarray(img).save(s, format="png")
-            
-            img_sum = s.getvalue()
-            
-            img_summaries.append(img_sum)
-
         # Create and write Summary
         with self.writer.as_default():
-            tf.summary.image(tag, img_summaries, step=step)
+            tf.summary.image(tag, images, step=step)
             self.writer.flush()
 
     def video_summary(self, tag, videos, step):
