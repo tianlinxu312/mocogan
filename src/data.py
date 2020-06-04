@@ -37,7 +37,7 @@ class VideoFolderDataset(torch.utils.data.Dataset):
                     pickle.dump((self.images, self.lengths), f)
 
         self.cumsum = np.cumsum([0] + self.lengths)
-        print "Total number of frames {}".format(np.sum(self.lengths))
+        print("Total number of frames {}".format(np.sum(self.lengths)))
 
     def __getitem__(self, item):
         path, label = self.images[item]
