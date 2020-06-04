@@ -6,6 +6,7 @@ Licensed under the CC BY-NC-ND 4.0 license (https://creativecommons.org/licenses
 import tensorflow as tf
 import numpy as np
 import scipy.misc
+from PIL import Image
 
 try:
     from StringIO import StringIO  # Python 2.7
@@ -31,7 +32,7 @@ class Logger(object):
                 s = StringIO()
             except:
                 s = BytesIO()
-            scipy.misc.toimage(img).save(s, format="png")
+            Image.fromarray(img).save(s, format="png")
 
             # Create an Image object
             img_sum = tf.Summary.Image(encoded_image_string=s.getvalue(),
@@ -65,7 +66,7 @@ class Logger(object):
             v = [np.squeeze(f) for f in np.split(v, v.shape[0], axis=0)]
             img = np.concatenate(v, axis=1)[:, :-1, :]
 
-            scipy.misc.toimage(img).save(s, format="png")
+            Image.fromarray(img).save(s, format="png")
 
             # Create an Image object
             img_sum = tf.Summary.Image(encoded_image_string=s.getvalue(),
